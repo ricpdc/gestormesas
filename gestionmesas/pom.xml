@@ -218,6 +218,8 @@
 				<artifactId>maven-checkstyle-plugin</artifactId>
 				<configuration>
 					<skipEmptyReport>false</skipEmptyReport>
+					<configLocation>https://raw.githubusercontent.com/apache/commons-lang/master/checkstyle.xml</configLocation>
+					<suppressionsFile>https://raw.githubusercontent.com/checkstyle/checkstyle/master/config/suppressions.xml</suppressionsFile>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -231,24 +233,7 @@
 
 
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-changelog-plugin</artifactId>
-				<version>2.3</version>
-				<reportSets>
-					<reportSet>
-						<id>dual-report</id>
-						<configuration>
-							<type>range</type>
-							<range>30</range>
-						</configuration>
-						<reports>
-							<report>changelog</report>
-							<report>file-activity</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
+			
 
 
 		</plugins>
