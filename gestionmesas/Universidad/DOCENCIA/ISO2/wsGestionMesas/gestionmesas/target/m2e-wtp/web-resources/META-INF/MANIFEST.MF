@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: Gestion Mesas
+Implementation-Version: 0.0.1
+Built-By: Alarcos
+Implementation-Vendor-Id: es.esi.cr.iso
+Build-Jdk: 1.8.0_181
+Implementation-URL: http://persapiens.org/gestionmesas
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: JoinFaces
+Main-Class: es.esi.cr.iso.gestionmesas.GestionMesasApplication
+

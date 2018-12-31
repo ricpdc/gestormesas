@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AWS Serverless Spring Boot API - es.esi.cr.iso::gestionmesas
+Resources:
+  GestionmesasFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: es.esi.cr.iso.StreamLambdaHandler::handleRequest
+      Runtime: java8
+      CodeUri: target/gestionmesas-0.0.1-SNAPSHOT.jar
+      MemorySize: 512
+      Policies: AWSLambdaBasicExecutionRole
+      Timeout: 30
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: any
+
+Outputs:
+  GestionmesasApi:
+    Description: URL for application
+    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/ping'
+    Export:
+      Name: GestionmesasApi

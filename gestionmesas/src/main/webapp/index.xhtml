@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<h:head>
+	<title>Gestor Mesas App</title>
+	<link rel="stylesheet" type="text/css" href="css/gestionmesas.css" />
+</h:head>
+<h:body>
+
+	<h:form id="mainForm">
+
+		<p:tabView id="tabs">
+			<p:tab id="mesasTabs" title="Tracking mesas">
+				<h:panelGrid columns="4" cellpadding="4">
+					<p:calendar value="#{gestorMesas.fechaServicio}"
+						showOn="button" />
+					<p:inputSwitch value="#{gestorMesas.comidaServicio}"
+						offLabel="cena" onLabel="comida" />
+					<p:selectOneRadio value="#{gestorMesas.turnoServicio}">
+						<f:selectItem itemLabel="Turno 1" itemValue="0" />
+						<f:selectItem itemLabel="Turno 2" itemValue="1" />
+						<f:selectItem itemLabel="Turno 3" itemValue="2" />
+					</p:selectOneRadio>
+					<p:commandButton value="Iniciar Servicio"
+						action="#{gestorMesas.definirServicio()}" update="mainForm" />
+				</h:panelGrid>
+				<br/>
+				<h:outputText
+					value="#{gestorMesas.servicioActivo != null ? gestorMesas.servicioActivo : 'Servicio no iniciado'}" />
+				<br/><br/>
+				<p:separator />
+				<h:panelGrid columns="10" cellpadding="4">
+					<h:outputText value="Mesa 1" />
+					<p:commandButton value="#{gestorMesas.estados[0].descripcion}" action="#{gestorMesas.definirEstado(1, 0)}" disabled="#{!gestorMesas.isEnabled(1, 0)}" styleClass="#{gestorMesas.getStyleClass(1, 0)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[1].descripcion}" action="#{gestorMesas.definirEstado(1, 1)}" disabled="#{!gestorMesas.isEnabled(1, 1)}" styleClass="#{gestorMesas.getStyleClass(1, 1)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[2].descripcion}" action="#{gestorMesas.definirEstado(1, 2)}" disabled="#{!gestorMesas.isEnabled(1, 2)}" styleClass="#{gestorMesas.getStyleClass(1, 2)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[3].descripcion}" action="#{gestorMesas.definirEstado(1, 3)}" disabled="#{!gestorMesas.isEnabled(1, 3)}" styleClass="#{gestorMesas.getStyleClass(1, 3)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[4].descripcion}" action="#{gestorMesas.definirEstado(1, 4)}" disabled="#{!gestorMesas.isEnabled(1, 4)}" styleClass="#{gestorMesas.getStyleClass(1, 4)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[5].descripcion}" action="#{gestorMesas.definirEstado(1, 5)}" disabled="#{!gestorMesas.isEnabled(1, 5)}" styleClass="#{gestorMesas.getStyleClass(1, 5)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[6].descripcion}" action="#{gestorMesas.definirEstado(1, 6)}" disabled="#{!gestorMesas.isEnabled(1, 6)}" styleClass="#{gestorMesas.getStyleClass(1, 6)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[7].descripcion}" action="#{gestorMesas.definirEstado(1, 7)}" disabled="#{!gestorMesas.isEnabled(1, 7)}" styleClass="#{gestorMesas.getStyleClass(1, 7)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[8].descripcion}" action="#{gestorMesas.definirEstado(1, 8)}" disabled="#{!gestorMesas.isEnabled(1, 8)}" styleClass="#{gestorMesas.getStyleClass(1, 8)}" update="mainForm"/>
+				</h:panelGrid>
+				<p:separator />
+				<h:panelGrid columns="10" cellpadding="4">
+					<h:outputText value="Mesa 2" />
+					<p:commandButton value="#{gestorMesas.estados[0].descripcion}" action="#{gestorMesas.definirEstado(2, 0)}" disabled="#{!gestorMesas.isEnabled(2, 0)}" styleClass="#{gestorMesas.getStyleClass(2, 0)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[1].descripcion}" action="#{gestorMesas.definirEstado(2, 1)}" disabled="#{!gestorMesas.isEnabled(2, 1)}" styleClass="#{gestorMesas.getStyleClass(2, 1)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[2].descripcion}" action="#{gestorMesas.definirEstado(2, 2)}" disabled="#{!gestorMesas.isEnabled(2, 2)}" styleClass="#{gestorMesas.getStyleClass(2, 2)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[3].descripcion}" action="#{gestorMesas.definirEstado(2, 3)}" disabled="#{!gestorMesas.isEnabled(2, 3)}" styleClass="#{gestorMesas.getStyleClass(2, 3)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[4].descripcion}" action="#{gestorMesas.definirEstado(2, 4)}" disabled="#{!gestorMesas.isEnabled(2, 4)}" styleClass="#{gestorMesas.getStyleClass(2, 4)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[5].descripcion}" action="#{gestorMesas.definirEstado(2, 5)}" disabled="#{!gestorMesas.isEnabled(2, 5)}" styleClass="#{gestorMesas.getStyleClass(2, 5)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[6].descripcion}" action="#{gestorMesas.definirEstado(2, 6)}" disabled="#{!gestorMesas.isEnabled(2, 6)}" styleClass="#{gestorMesas.getStyleClass(2, 6)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[7].descripcion}" action="#{gestorMesas.definirEstado(2, 7)}" disabled="#{!gestorMesas.isEnabled(2, 7)}" styleClass="#{gestorMesas.getStyleClass(2, 7)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[8].descripcion}" action="#{gestorMesas.definirEstado(2, 8)}" disabled="#{!gestorMesas.isEnabled(2, 8)}" styleClass="#{gestorMesas.getStyleClass(2, 8)}" update="mainForm"/>
+				</h:panelGrid>
+				<p:separator />
+				<h:panelGrid columns="10" cellpadding="4">
+					<h:outputText value="Mesa 3" />
+					<p:commandButton value="#{gestorMesas.estados[0].descripcion}" action="#{gestorMesas.definirEstado(3, 0)}" disabled="#{!gestorMesas.isEnabled(3, 0)}" styleClass="#{gestorMesas.getStyleClass(3, 0)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[1].descripcion}" action="#{gestorMesas.definirEstado(3, 1)}" disabled="#{!gestorMesas.isEnabled(3, 1)}" styleClass="#{gestorMesas.getStyleClass(3, 1)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[2].descripcion}" action="#{gestorMesas.definirEstado(3, 2)}" disabled="#{!gestorMesas.isEnabled(3, 2)}" styleClass="#{gestorMesas.getStyleClass(3, 2)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[3].descripcion}" action="#{gestorMesas.definirEstado(3, 3)}" disabled="#{!gestorMesas.isEnabled(3, 3)}" styleClass="#{gestorMesas.getStyleClass(3, 3)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[4].descripcion}" action="#{gestorMesas.definirEstado(3, 4)}" disabled="#{!gestorMesas.isEnabled(3, 4)}" styleClass="#{gestorMesas.getStyleClass(3, 4)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[5].descripcion}" action="#{gestorMesas.definirEstado(3, 5)}" disabled="#{!gestorMesas.isEnabled(3, 5)}" styleClass="#{gestorMesas.getStyleClass(3, 5)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[6].descripcion}" action="#{gestorMesas.definirEstado(3, 6)}" disabled="#{!gestorMesas.isEnabled(3, 6)}" styleClass="#{gestorMesas.getStyleClass(3, 6)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[7].descripcion}" action="#{gestorMesas.definirEstado(3, 7)}" disabled="#{!gestorMesas.isEnabled(3, 7)}" styleClass="#{gestorMesas.getStyleClass(3, 7)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[8].descripcion}" action="#{gestorMesas.definirEstado(3, 8)}" disabled="#{!gestorMesas.isEnabled(3, 8)}" styleClass="#{gestorMesas.getStyleClass(3, 8)}" update="mainForm"/>
+				</h:panelGrid>
+				<p:separator />
+				<h:panelGrid columns="10" cellpadding="4">
+					<h:outputText value="Mesa 4" />
+					<p:commandButton value="#{gestorMesas.estados[0].descripcion}" action="#{gestorMesas.definirEstado(4, 0)}" disabled="#{!gestorMesas.isEnabled(4, 0)}" styleClass="#{gestorMesas.getStyleClass(4, 0)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[1].descripcion}" action="#{gestorMesas.definirEstado(4, 1)}" disabled="#{!gestorMesas.isEnabled(4, 1)}" styleClass="#{gestorMesas.getStyleClass(4, 1)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[2].descripcion}" action="#{gestorMesas.definirEstado(4, 2)}" disabled="#{!gestorMesas.isEnabled(4, 2)}" styleClass="#{gestorMesas.getStyleClass(4, 2)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[3].descripcion}" action="#{gestorMesas.definirEstado(4, 3)}" disabled="#{!gestorMesas.isEnabled(4, 3)}" styleClass="#{gestorMesas.getStyleClass(4, 3)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[4].descripcion}" action="#{gestorMesas.definirEstado(4, 4)}" disabled="#{!gestorMesas.isEnabled(4, 4)}" styleClass="#{gestorMesas.getStyleClass(4, 4)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[5].descripcion}" action="#{gestorMesas.definirEstado(4, 5)}" disabled="#{!gestorMesas.isEnabled(4, 5)}" styleClass="#{gestorMesas.getStyleClass(4, 5)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[6].descripcion}" action="#{gestorMesas.definirEstado(4, 6)}" disabled="#{!gestorMesas.isEnabled(4, 6)}" styleClass="#{gestorMesas.getStyleClass(4, 6)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[7].descripcion}" action="#{gestorMesas.definirEstado(4, 7)}" disabled="#{!gestorMesas.isEnabled(4, 7)}" styleClass="#{gestorMesas.getStyleClass(4, 7)}" update="mainForm"/>
+					<p:commandButton value="#{gestorMesas.estados[8].descripcion}" action="#{gestorMesas.definirEstado(4, 8)}" disabled="#{!gestorMesas.isEnabled(4, 8)}" styleClass="#{gestorMesas.getStyleClass(4, 8)}" update="mainForm"/>
+				</h:panelGrid>
+				<p:separator />
+			</p:tab>
+			<p:tab id="reservasTab" title="Reservas">
+				<h:panelGrid columns="2" cellpadding="4">
+					<p:outputLabel value="Fecha: " />
+					<p:calendar value="#{gestorReservas.fechaReserva}" showOn="button" size="11"  />
+					<p:outputLabel value="comida/cena: " />
+					<p:inputSwitch value="#{gestorReservas.comidaReserva}"
+						offLabel="cena" onLabel="comida" style="width:170px !important"/>
+					<p:outputLabel value="Turno: " />
+					<p:selectOneRadio value="#{gestorReservas.turnoReserva}">
+						<f:selectItem itemLabel="Turno 1" itemValue="0" />
+						<f:selectItem itemLabel="Turno 2" itemValue="1" />
+						<f:selectItem itemLabel="Turno 3" itemValue="2" />
+					</p:selectOneRadio>
+					<p:outputLabel for="mesa" value="Mesa: " />
+					<p:selectOneMenu id="mesa" value="#{gestorReservas.mesaReserva}"
+						style="width:150px">
+						<f:selectItem itemLabel="Mesa 1" itemValue="0" />
+						<f:selectItem itemLabel="Mesa 2" itemValue="1" />
+						<f:selectItem itemLabel="Mesa 3" itemValue="2" />
+						<f:selectItem itemLabel="Mesa 4" itemValue="3" />
+					</p:selectOneMenu>
+					<p:outputLabel for="nombre" value="Nombre: " />
+					<h:inputText id="nombre" value="#{gestorReservas.nombreReserva}"
+						style="width:185px" />
+					<p:commandButton value="Hacer Reserva"
+						action="#{gestorReservas.realizarReserva()}" update="mainForm, mainForm:tabs:reservasTableId" />
+					
+					
+				</h:panelGrid>
+				<br />
+				<p:separator />
+				<p:dataTable id="reservasTableId" widgetVar="reservasTable" value="#{gestorReservas.reservas}" var="reserva"
+					emptyMessage="No hay reservas" rows="10" paginator="true"
+					paginatorPosition="bottom"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="10,20,30">
+					<p:column headerText="Nombre" sortBy="#{reserva.nombre}"
+						filterBy="#{reserva.nombre}" filterMatchMode="contains">
+						<h:outputText value="#{reserva.nombre}" />
+					</p:column>
+					<p:column headerText="Fecha" sortBy="#{reserva.fecha}"
+						filterBy="#{reserva.fecha}" filterMatchMode="contains">
+						<h:outputText value="#{reserva.fecha}" />
+					</p:column>
+					<p:column headerText="Comida/Cena" sortBy="#{reserva.comida}"
+						filterBy="#{reserva.comida}" filterMatchMode="contains">
+						<h:outputText value="#{reserva.comida}" />
+					</p:column>
+					<p:column headerText="Turno" sortBy="#{reserva.turno}"
+						filterBy="#{reserva.turno}" filterMatchMode="contains">
+						<h:outputText value="#{reserva.turno}" />
+					</p:column>
+					<p:column headerText="Mesa" sortBy="#{reserva.mesa}"
+						filterBy="#{reserva.mesa}" filterMatchMode="contains">
+						<h:outputText value="#{reserva.mesa}" />
+					</p:column>
+				</p:dataTable>
+			</p:tab>
+		</p:tabView>
+
+	</h:form>
+</h:body>
+</html>
