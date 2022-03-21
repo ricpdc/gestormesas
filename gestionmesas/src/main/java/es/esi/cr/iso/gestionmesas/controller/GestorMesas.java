@@ -53,7 +53,7 @@ public class GestorMesas implements Serializable {
 		reload();
 	}
 
-	private void reload() {
+	void reload() {
 		setEstados(EstadoEnum.values());
 		fechaServicio = new Date();
 		comidaServicio = true;
@@ -64,7 +64,9 @@ public class GestorMesas implements Serializable {
 			ultimoEstadoMesa[i] = 0;
 		}
 
-		RequestContext.getCurrentInstance().update("mainForm");
+		if(RequestContext.getCurrentInstance()!=null) {
+			RequestContext.getCurrentInstance().update("mainForm");
+		}
 	}
 
 	public void definirServicio() {
