@@ -1,6 +1,1 @@
-
-/target/classes/
-/target/generated-sources/
-/target/generated-test-sources/
-/target/maven_status/
-/target/m2e-wtp/
+/target/
