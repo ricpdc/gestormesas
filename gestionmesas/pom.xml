@@ -19,6 +19,14 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<start-class>es.esi.cr.iso.gestionmesas.GestionMesasApplication</start-class>
+
+
+		<sonar.projectKey>ricpdc_gestormesas</sonar.projectKey>
+		<sonar.organization>ricpdc</sonar.organization>
+		<sonar.sources>./src/main/java</sonar.sources>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.login>efd4fadff2f29a07ee09ddf98851b7df450d25d9</sonar.login>
+
 	</properties>
 
 	<dependencies>
@@ -94,6 +102,13 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.7</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+		</dependency>
+				
 
 	</dependencies>
 
@@ -108,7 +123,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.7.9</version>
+				<version>0.8.7</version>
 				<executions>
 					<execution>
 						<id>default-prepare-agent</id>
@@ -170,19 +185,54 @@
 
 	<reporting>
 		<plugins>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>2.7</version>
+				<version>2.9</version>
 			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>3.0.0-M5</version>
+			</plugin>
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
 				<configuration>
 					<skipEmptyReport>false</skipEmptyReport>
+					<rulesets>
+						<ruleset>/quality/pmd/maven-pmd-plugin-default.xml</ruleset>
+					</rulesets>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<configuration>
+					<skipEmptyReport>false</skipEmptyReport>
+					<excludeFilterFile>/quality/findbugs/findbugs-exclude.xml</excludeFilterFile>
+				</configuration>
+			</plugin>
+
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.1.2</version>
+				<configuration>
+					<configLocation>/quality/checkstyle/sun_checks.xml</configLocation>
+					<suppressionsLocation>/quality/checkstyle/checkstyle_input_suppressions.xml</suppressionsLocation>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+			</plugin>
+			
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
@@ -197,43 +247,9 @@
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pmd-plugin</artifactId>
-				<configuration>
-					<skipEmptyReport>false</skipEmptyReport>
-					<rulesets>
-						<ruleset>https://gitbox.apache.org/repos/asf?p=maven-pmd-plugin.git;a=blob_plain;f=src/main/resources/rulesets/java/maven-pmd-plugin-default.xml;hb=HEAD</ruleset>
-					</rulesets>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<configuration>
-					<skipEmptyReport>false</skipEmptyReport>
-					<excludeFilterFile>https://raw.githubusercontent.com/joinfaces/joinfaces-maven-war-example/master/src/checkconfig/findbugs/findbugs-exclude.xml</excludeFilterFile>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<configuration>
-					<skipEmptyReport>false</skipEmptyReport>
-					<configLocation>https://raw.githubusercontent.com/apache/commons-lang/master/checkstyle.xml</configLocation>
-					<suppressionsFile>https://raw.githubusercontent.com/checkstyle/checkstyle/master/config/suppressions.xml</suppressionsFile>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jxr-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.3.2</version>
 			</plugin>
-
-
-
-			
 
 
 		</plugins>
