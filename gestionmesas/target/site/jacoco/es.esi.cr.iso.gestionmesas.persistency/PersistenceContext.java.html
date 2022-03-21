@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PersistenceContext.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Gestion Mesas</a> &gt; <a href="index.source.html" class="el_package">es.esi.cr.iso.gestionmesas.persistency</a> &gt; <span class="el_source">PersistenceContext.java</span></div><h1>PersistenceContext.java</h1><pre class="source lang-java linenums">package es.esi.cr.iso.gestionmesas.persistency;
+
+import java.util.Properties;
+
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
+@Configuration
+@EnableTransactionManagement
+<span class="nc" id="L21">class PersistenceContext {</span>
+
+	@Bean(destroyMethod = &quot;close&quot;)
+	DataSource dataSource(Environment env) {
+<span class="nc" id="L25">		HikariConfig dataSourceConfig = new HikariConfig();</span>
+<span class="nc" id="L26">		dataSourceConfig.setDriverClassName(env.getRequiredProperty(&quot;spring.datasource.driver&quot;));</span>
+<span class="nc" id="L27">		dataSourceConfig.setJdbcUrl(env.getRequiredProperty(&quot;spring.datasource.url&quot;));</span>
+<span class="nc" id="L28">		dataSourceConfig.setUsername(env.getRequiredProperty(&quot;spring.datasource.username&quot;));</span>
+<span class="nc" id="L29">		dataSourceConfig.setPassword(env.getRequiredProperty(&quot;spring.datasource.password&quot;));</span>
+
+<span class="nc" id="L31">		return new HikariDataSource(dataSourceConfig);</span>
+	}
+
+	@Bean
+	LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, Environment env) {
+<span class="nc" id="L36">		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();</span>
+<span class="nc" id="L37">		entityManagerFactoryBean.setDataSource(dataSource);</span>
+<span class="nc" id="L38">		entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());</span>
+<span class="nc" id="L39">		entityManagerFactoryBean.setPackagesToScan(&quot;es.esi.cr.iso.gestionmesas.model&quot;);</span>
+
+<span class="nc" id="L41">		Properties jpaProperties = new Properties();</span>
+
+		// Configures the used database dialect. This allows Hibernate to create SQL
+		// that is optimized for the used database.
+<span class="nc" id="L45">		jpaProperties.put(&quot;hibernate.dialect&quot;, env.getRequiredProperty(&quot;hibernate.dialect&quot;));</span>
+
+		// Specifies the action that is invoked to the database when the Hibernate
+		// SessionFactory is created or closed.
+<span class="nc" id="L49">		jpaProperties.put(&quot;hibernate.hbm2ddl.auto&quot;, env.getRequiredProperty(&quot;hibernate.hbm2ddl.auto&quot;));</span>
+
+		// Configures the naming strategy that is used when Hibernate creates new
+		// database objects and schema elements
+<span class="nc" id="L53">		jpaProperties.put(&quot;hibernate.ejb.naming_strategy&quot;, env.getRequiredProperty(&quot;hibernate.ejb.naming_strategy&quot;));</span>
+
+		// If the value of this property is true, Hibernate writes all SQL
+		// statements to the console.
+<span class="nc" id="L57">		jpaProperties.put(&quot;hibernate.show_sql&quot;, env.getRequiredProperty(&quot;hibernate.show_sql&quot;));</span>
+
+		// If the value of this property is true, Hibernate will format the SQL
+		// that is written to the console.
+<span class="nc" id="L61">		jpaProperties.put(&quot;hibernate.format_sql&quot;, env.getRequiredProperty(&quot;hibernate.format_sql&quot;));</span>
+		
+<span class="nc" id="L63">		jpaProperties.put(&quot;hibernate.enable_lazy_load_no_trans&quot;, env.getRequiredProperty(&quot;hibernate.enable_lazy_load_no_trans&quot;));</span>
+		
+<span class="nc" id="L65">		jpaProperties.put(&quot;hibernate.event.merge.entity_copy_observer&quot;, env.getRequiredProperty(&quot;hibernate.event.merge.entity_copy_observer&quot;));</span>
+
+<span class="nc" id="L67">		entityManagerFactoryBean.setJpaProperties(jpaProperties);</span>
+
+<span class="nc" id="L69">		return entityManagerFactoryBean;</span>
+	}
+
+	@Bean
+	JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+<span class="nc" id="L74">		JpaTransactionManager transactionManager = new JpaTransactionManager();</span>
+<span class="nc" id="L75">		transactionManager.setEntityManagerFactory(entityManagerFactory);</span>
+<span class="nc" id="L76">		return transactionManager;</span>
+	}
+
+	// Add the other beans here
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

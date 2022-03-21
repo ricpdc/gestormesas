@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<changelog>
+  
+<changeset datePattern="yyyyMMdd HH:mm:ss z" start="20220219 18:55:18 CET" end="20220322 18:55:18 CET">
+	<changelog-entry>
+		<date pattern="yyyy-MM-dd">2022-03-21</date>
+		<time pattern="HH:mm:ss">18:48:09</time>
+		<author><![CDATA[Ricardo <ricardo.pdelcastillo@uclm.es>]]></author>
+		<file>
+			<action>modified</action>
+			<name>gestionmesas/.classpath</name>
+			<revision>daa2a91859d78b386ed9d5f6e367994dc0b4b6f2</revision>
+		</file>
+		<file>
+			<action>modified</action>
+			<name>gestionmesas/.settings/org.eclipse.jdt.core.prefs</name>
+			<revision>daa2a91859d78b386ed9d5f6e367994dc0b4b6f2</revision>
+		</file>
+		<file>
+			<action>modified</action>
+			<name>gestionmesas/.settings/org.eclipse.wst.common.component</name>
+			<revision>daa2a91859d78b386ed9d5f6e367994dc0b4b6f2</revision>
+		</file>
+		<file>
+			<action>modified</action>
+			<name>gestionmesas/.settings/org.eclipse.wst.common.project.facet.core.xml</name>
+			<revision>daa2a91859d78b386ed9d5f6e367994dc0b4b6f2</revision>
+		</file>
+		<file>
+			<action>added</action>
+			<name>gestionmesas/quality/checkstyle/checkstyle_input_suppressions.xml</name>
+			<revision>daa2a91859d78b386ed9d5f6e367994dc0b4b6f2</revision>
+		</file>
+		<file>
+			<action>added</action>
+			<name>gestionmesas/quality/checkstyle/sun_checks.xml</name>
+			<revision>daa2a91859d78b386ed9d5f6e367994dc0b4b6f2</revision>
+		</file>
+		<file>
+			<action>added</action>
+			<name>gestionmesas/quality/findbugs/findbugs-exclude.xml</name>
+			<revision>daa2a91859d78b386ed9d5f6e367994dc0b4b6f2</revision>
+		</file>
+		<file>
+			<action>added</action>
+			<name>gestionmesas/quality/pmd/maven-pmd-plugin-default.xml</name>
+			<revision>daa2a91859d78b386ed9d5f6e367994dc0b4b6f2</revision>
+		</file>
+		<file>
+			<action>modified</action>
+			<name>gestionmesas/src/main/java/es/esi/cr/iso/gestionmesas/controller/GestorMesas.java</name>
+			<revision>daa2a91859d78b386ed9d5f6e367994dc0b4b6f2</revision>
+		</file>
+		<file>
+			<action>added</action>
+			<name>gestionmesas/src/test/java/es/esi/cr/iso/gestionmesas/controller/GestorMesasTest.java</name>
+			<revision>daa2a91859d78b386ed9d5f6e367994dc0b4b6f2</revision>
+		</file>
+		<msg><![CDATA[Add tests and fix quality reporting]]></msg>
+	</changelog-entry>
+	<changelog-entry>
+		<date pattern="yyyy-MM-dd">2022-03-21</date>
+		<time pattern="HH:mm:ss">18:47:16</time>
+		<author><![CDATA[Ricardo <ricardo.pdelcastillo@uclm.es>]]></author>
+		<file>
+			<action>modified</action>
+			<name>gestionmesas/pom.xml</name>
+			<revision>18c820df454728ee5fc819872e93fc367b4a3a42</revision>
+		</file>
+		<msg><![CDATA[fix quality reporting]]></msg>
+	</changelog-entry>
+</changeset>
+
+</changelog>

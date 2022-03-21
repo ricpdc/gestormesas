@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GestorMesas.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Gestion Mesas</a> &gt; <a href="index.source.html" class="el_package">es.esi.cr.iso.gestionmesas.controller</a> &gt; <span class="el_source">GestorMesas.java</span></div><h1>GestorMesas.java</h1><pre class="source lang-java linenums">package es.esi.cr.iso.gestionmesas.controller;
+
+import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.Date;
+
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+
+import org.primefaces.context.RequestContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import es.esi.cr.iso.gestionmesas.model.Servicio;
+import es.esi.cr.iso.gestionmesas.model.Transaccion;
+import es.esi.cr.iso.gestionmesas.model.enums.ComidaEnum;
+import es.esi.cr.iso.gestionmesas.model.enums.EstadoEnum;
+import es.esi.cr.iso.gestionmesas.model.enums.MesaEnum;
+import es.esi.cr.iso.gestionmesas.model.enums.TurnoEnum;
+import es.esi.cr.iso.gestionmesas.persistency.ServicioDao;
+
+@ManagedBean(name = &quot;gestorMesas&quot;)
+@Controller
+@ViewScoped
+public class GestorMesas implements Serializable {
+
+	private static final long serialVersionUID = 1220451072138440791L;
+
+<span class="fc" id="L32">	static Logger LOGGER = LoggerFactory.getLogger(GestorMesas.class);</span>
+
+	@Autowired
+	private ServicioDao servicioDao;
+
+	private EstadoEnum[] estados;
+
+	private Servicio servicioActivo;
+
+	private Date fechaServicio;
+	private boolean comidaServicio;
+	private int turnoServicio;
+
+	private int[] ultimoEstadoMesa;
+
+	public GestorMesas() {
+<span class="fc" id="L48">		super();</span>
+<span class="fc" id="L49">	}</span>
+
+	@PostConstruct
+	public void init() {
+<span class="nc" id="L53">		reload();</span>
+<span class="nc" id="L54">	}</span>
+
+	void reload() {
+<span class="fc" id="L57">		setEstados(EstadoEnum.values());</span>
+<span class="fc" id="L58">		fechaServicio = new Date();</span>
+<span class="fc" id="L59">		comidaServicio = true;</span>
+<span class="fc" id="L60">		turnoServicio = 0;</span>
+
+<span class="fc" id="L62">		ultimoEstadoMesa = new int[MesaEnum.values().length];</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">		for (int i = 0; i &lt; ultimoEstadoMesa.length; i++) {</span>
+<span class="fc" id="L64">			ultimoEstadoMesa[i] = 0;</span>
+		}
+
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">		if(RequestContext.getCurrentInstance()!=null) {</span>
+<span class="nc" id="L68">			RequestContext.getCurrentInstance().update(&quot;mainForm&quot;);</span>
+		}
+<span class="fc" id="L70">	}</span>
+
+	public void definirServicio() {
+<span class="nc" id="L73">		servicioActivo = new Servicio();</span>
+<span class="nc" id="L74">		servicioActivo.setFecha(new Timestamp(fechaServicio.getTime()));</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">		servicioActivo.setComida(comidaServicio ? ComidaEnum.COMIDA : ComidaEnum.CENA);</span>
+<span class="nc" id="L76">		servicioActivo.setTurno(TurnoEnum.values()[turnoServicio]);</span>
+<span class="nc" id="L77">		servicioActivo = servicioDao.update(servicioActivo);</span>
+		// TODO Comprobar si hay reservas para la fecha y servicio para marcar el estdo
+		// de cada mesa
+<span class="nc" id="L80">	}</span>
+
+	public void definirEstado(int mesaId, int estadoId) {
+<span class="nc" id="L83">		MesaEnum mesa = MesaEnum.values()[mesaId - 1];</span>
+<span class="nc" id="L84">		EstadoEnum estado = EstadoEnum.values()[estadoId];</span>
+<span class="nc" id="L85">		Transaccion transaccion = new Transaccion();</span>
+<span class="nc" id="L86">		transaccion.setServicio(servicioActivo);</span>
+<span class="nc" id="L87">		transaccion.setFecha(new Timestamp(new Date().getTime()));</span>
+<span class="nc" id="L88">		transaccion.setMesa(mesa);</span>
+<span class="nc" id="L89">		transaccion.setEstado(estado);</span>
+<span class="nc" id="L90">		servicioActivo.getTransacciones().add(transaccion);</span>
+<span class="nc" id="L91">		servicioActivo = servicioDao.update(servicioActivo);</span>
+<span class="nc" id="L92">		ultimoEstadoMesa[mesaId - 1] = estadoId;</span>
+<span class="nc" id="L93">	}</span>
+
+	public String getStyleClass(int mesaId, int estadoId) {
+<span class="nc bnc" id="L96" title="All 4 branches missed.">		if (EstadoEnum.values().length - 1 == ultimoEstadoMesa[mesaId - 1] &amp;&amp; estadoId==0) {</span>
+<span class="nc" id="L97">			return &quot;estado-futuro&quot;;</span>
+		}
+<span class="nc bnc" id="L99" title="All 2 branches missed.">		else if (estadoId &gt; ultimoEstadoMesa[mesaId - 1]) {</span>
+<span class="nc" id="L100">			return &quot;estado-futuro&quot;;</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">		} else if (estadoId &lt; ultimoEstadoMesa[mesaId - 1]) {</span>
+<span class="nc" id="L102">			return &quot;estado-pasado&quot;;</span>
+		} else {
+<span class="nc" id="L104">			return &quot;estado-actual&quot;;</span>
+		}
+	}
+
+	public boolean isEnabled(int mesaId, int estadoId) {
+<span class="nc bnc" id="L109" title="All 4 branches missed.">		if (EstadoEnum.values().length - 1 == ultimoEstadoMesa[mesaId - 1] &amp;&amp; estadoId==0) {</span>
+<span class="nc" id="L110">			return true;</span>
+		} else {
+<span class="nc bnc" id="L112" title="All 4 branches missed.">			return servicioActivo != null &amp;&amp; estadoId &gt;= ultimoEstadoMesa[mesaId - 1]; </span>
+		}
+	}
+
+	public EstadoEnum[] getEstados() {
+<span class="nc" id="L117">		return estados;</span>
+	}
+
+	public void setEstados(EstadoEnum[] estados) {
+<span class="fc" id="L121">		this.estados = estados;</span>
+<span class="fc" id="L122">	}</span>
+
+	public Servicio getServicioActivo() {
+<span class="nc" id="L125">		return servicioActivo;</span>
+	}
+
+	public void setServicioActivo(Servicio servicioActivo) {
+<span class="nc" id="L129">		this.servicioActivo = servicioActivo;</span>
+<span class="nc" id="L130">	}</span>
+
+	public Date getFechaServicio() {
+<span class="nc" id="L133">		return fechaServicio;</span>
+	}
+
+	public void setFechaServicio(Date fechaServicio) {
+<span class="nc" id="L137">		this.fechaServicio = fechaServicio;</span>
+<span class="nc" id="L138">	}</span>
+
+	public boolean isComidaServicio() {
+<span class="nc" id="L141">		return comidaServicio;</span>
+	}
+
+	public void setComidaServicio(boolean comidaServicio) {
+<span class="nc" id="L145">		this.comidaServicio = comidaServicio;</span>
+<span class="nc" id="L146">	}</span>
+
+	public int getTurnoServicio() {
+<span class="fc" id="L149">		return turnoServicio;</span>
+	}
+
+	public void setTurnoServicio(int turnoServicio) {
+<span class="nc" id="L153">		this.turnoServicio = turnoServicio;</span>
+<span class="nc" id="L154">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

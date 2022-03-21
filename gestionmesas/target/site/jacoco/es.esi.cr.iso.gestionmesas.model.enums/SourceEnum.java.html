@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SourceEnum.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Gestion Mesas</a> &gt; <a href="index.source.html" class="el_package">es.esi.cr.iso.gestionmesas.model.enums</a> &gt; <span class="el_source">SourceEnum.java</span></div><h1>SourceEnum.java</h1><pre class="source lang-java linenums">package es.esi.cr.iso.gestionmesas.model.enums;
+
+import static java.util.stream.Collectors.joining;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.util.CollectionUtils;
+
+<span class="nc" id="L10">public enum SourceEnum {</span>
+
+<span class="nc" id="L12">	WEB_APP(1, SourceConcernEnum.APPLICATION, &quot;Web application&quot;, Arrays.asList(&quot;ear&quot;, &quot;war&quot;, &quot;jar&quot;)), JPA(1,</span>
+			SourceConcernEnum.APPLICATION, &quot;JPA config&quot;);
+
+	private int id;
+	private SourceConcernEnum sourceConcern;
+	private String label;
+	private List&lt;String&gt; extensions;
+
+	private SourceEnum(int id, SourceConcernEnum sourceConcern, String label) {
+<span class="nc" id="L21">		this(id, sourceConcern, label, null);</span>
+<span class="nc" id="L22">	}</span>
+
+<span class="nc" id="L24">	private SourceEnum(int id, SourceConcernEnum sourceConcern, String label, List&lt;String&gt; extensions) {</span>
+<span class="nc" id="L25">		this.id = id;</span>
+<span class="nc" id="L26">		this.sourceConcern = sourceConcern;</span>
+<span class="nc" id="L27">		this.label = label;</span>
+<span class="nc" id="L28">		this.setExtensions(extensions);</span>
+<span class="nc" id="L29">	}</span>
+
+	public int getId() {
+<span class="nc" id="L32">		return id;</span>
+	}
+
+	public void setId(int id) {
+<span class="nc" id="L36">		this.id = id;</span>
+<span class="nc" id="L37">	}</span>
+
+	public String getLabel() {
+<span class="nc" id="L40">		return label;</span>
+	}
+
+	public void setLabel(String label) {
+<span class="nc" id="L44">		this.label = label;</span>
+<span class="nc" id="L45">	}</span>
+
+	public SourceConcernEnum getSourceConcern() {
+<span class="nc" id="L48">		return sourceConcern;</span>
+	}
+
+	public void setSourceConcern(SourceConcernEnum sourceConcern) {
+<span class="nc" id="L52">		this.sourceConcern = sourceConcern;</span>
+<span class="nc" id="L53">	}</span>
+
+	public List&lt;String&gt; getExtensions() {
+<span class="nc" id="L56">		return extensions;</span>
+	}
+
+	public String getFormattedExtensions() {
+<span class="nc bnc" id="L60" title="All 2 branches missed.">		return CollectionUtils.isEmpty(extensions) ? &quot;&quot; : extensions.stream().collect(joining(&quot;, *.&quot;, &quot;(*.&quot;, &quot;)&quot;));</span>
+	}
+
+	public void setExtensions(List&lt;String&gt; extensions) {
+<span class="nc" id="L64">		this.extensions = extensions;</span>
+<span class="nc" id="L65">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

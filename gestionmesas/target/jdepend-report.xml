@@ -1,0 +1,348 @@
+<?xml version="1.0"?>
+<JDepend>
+    <Packages>
+
+        <Package name="com.zaxxer.hikari">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="es.esi.cr.iso.gestionmesas">
+            <Stats>
+                <TotalClasses>2</TotalClasses>
+                <ConcreteClasses>2</ConcreteClasses>
+                <AbstractClasses>0</AbstractClasses>
+                <Ca>0</Ca>
+                <Ce>6</Ce>
+                <A>0</A>
+                <I>1</I>
+                <D>0</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+                <Class sourceFile="GestionMesasApplication.java">
+                    es.esi.cr.iso.gestionmesas.GestionMesasApplication
+                </Class>
+                <Class sourceFile="GestionMesasApplication.java">
+                    es.esi.cr.iso.gestionmesas.GestionMesasApplication$1
+                </Class>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>java.lang</Package>
+                <Package>javax.servlet</Package>
+                <Package>org.springframework.boot</Package>
+                <Package>org.springframework.boot.builder</Package>
+                <Package>org.springframework.boot.web.servlet</Package>
+                <Package>org.springframework.boot.web.support</Package>
+            </DependsUpon>
+
+            <UsedBy>
+            </UsedBy>
+        </Package>
+
+        <Package name="es.esi.cr.iso.gestionmesas.config">
+            <Stats>
+                <TotalClasses>2</TotalClasses>
+                <ConcreteClasses>2</ConcreteClasses>
+                <AbstractClasses>0</AbstractClasses>
+                <Ca>0</Ca>
+                <Ce>4</Ce>
+                <A>0</A>
+                <I>1</I>
+                <D>0</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+                <Class sourceFile="MyWebMvcConfig.java">
+                    es.esi.cr.iso.gestionmesas.config.MyWebMvcConfig
+                </Class>
+                <Class sourceFile="MyWebMvcConfig.java">
+                    es.esi.cr.iso.gestionmesas.config.MyWebMvcConfig$1
+                </Class>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>java.lang</Package>
+                <Package>org.springframework.boot.web.servlet</Package>
+                <Package>org.springframework.boot.web.support</Package>
+                <Package>org.springframework.web.servlet.config.annotation</Package>
+            </DependsUpon>
+
+            <UsedBy>
+            </UsedBy>
+        </Package>
+
+        <Package name="es.esi.cr.iso.gestionmesas.controller">
+            <Stats>
+                <TotalClasses>2</TotalClasses>
+                <ConcreteClasses>2</ConcreteClasses>
+                <AbstractClasses>0</AbstractClasses>
+                <Ca>0</Ca>
+                <Ce>9</Ce>
+                <A>0</A>
+                <I>1</I>
+                <D>0</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+                <Class sourceFile="GestorMesas.java">
+                    es.esi.cr.iso.gestionmesas.controller.GestorMesas
+                </Class>
+                <Class sourceFile="GestorReservas.java">
+                    es.esi.cr.iso.gestionmesas.controller.GestorReservas
+                </Class>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>es.esi.cr.iso.gestionmesas.model</Package>
+                <Package>es.esi.cr.iso.gestionmesas.model.enums</Package>
+                <Package>es.esi.cr.iso.gestionmesas.persistency</Package>
+                <Package>java.io</Package>
+                <Package>java.lang</Package>
+                <Package>java.sql</Package>
+                <Package>java.util</Package>
+                <Package>org.primefaces.context</Package>
+                <Package>org.slf4j</Package>
+            </DependsUpon>
+
+            <UsedBy>
+            </UsedBy>
+        </Package>
+
+        <Package name="es.esi.cr.iso.gestionmesas.model">
+            <Stats>
+                <TotalClasses>4</TotalClasses>
+                <ConcreteClasses>3</ConcreteClasses>
+                <AbstractClasses>1</AbstractClasses>
+                <Ca>2</Ca>
+                <Ce>5</Ce>
+                <A>0.25</A>
+                <I>0.71</I>
+                <D>0.04</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+                <Class sourceFile="AbstractEntity.java">
+                    es.esi.cr.iso.gestionmesas.model.AbstractEntity
+                </Class>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+                <Class sourceFile="Reserva.java">
+                    es.esi.cr.iso.gestionmesas.model.Reserva
+                </Class>
+                <Class sourceFile="Servicio.java">
+                    es.esi.cr.iso.gestionmesas.model.Servicio
+                </Class>
+                <Class sourceFile="Transaccion.java">
+                    es.esi.cr.iso.gestionmesas.model.Transaccion
+                </Class>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>es.esi.cr.iso.gestionmesas.model.enums</Package>
+                <Package>java.io</Package>
+                <Package>java.lang</Package>
+                <Package>java.sql</Package>
+                <Package>java.util</Package>
+            </DependsUpon>
+
+            <UsedBy>
+                <Package>es.esi.cr.iso.gestionmesas.controller</Package>
+                <Package>es.esi.cr.iso.gestionmesas.persistency</Package>
+            </UsedBy>
+        </Package>
+
+        <Package name="es.esi.cr.iso.gestionmesas.model.enums">
+            <Stats>
+                <TotalClasses>6</TotalClasses>
+                <ConcreteClasses>6</ConcreteClasses>
+                <AbstractClasses>0</AbstractClasses>
+                <Ca>2</Ca>
+                <Ce>4</Ce>
+                <A>0</A>
+                <I>0.67</I>
+                <D>0.33</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+                <Class sourceFile="ComidaEnum.java">
+                    es.esi.cr.iso.gestionmesas.model.enums.ComidaEnum
+                </Class>
+                <Class sourceFile="EstadoEnum.java">
+                    es.esi.cr.iso.gestionmesas.model.enums.EstadoEnum
+                </Class>
+                <Class sourceFile="MesaEnum.java">
+                    es.esi.cr.iso.gestionmesas.model.enums.MesaEnum
+                </Class>
+                <Class sourceFile="SourceConcernEnum.java">
+                    es.esi.cr.iso.gestionmesas.model.enums.SourceConcernEnum
+                </Class>
+                <Class sourceFile="SourceEnum.java">
+                    es.esi.cr.iso.gestionmesas.model.enums.SourceEnum
+                </Class>
+                <Class sourceFile="TurnoEnum.java">
+                    es.esi.cr.iso.gestionmesas.model.enums.TurnoEnum
+                </Class>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>java.lang</Package>
+                <Package>java.util</Package>
+                <Package>java.util.stream</Package>
+                <Package>org.springframework.util</Package>
+            </DependsUpon>
+
+            <UsedBy>
+                <Package>es.esi.cr.iso.gestionmesas.controller</Package>
+                <Package>es.esi.cr.iso.gestionmesas.model</Package>
+            </UsedBy>
+        </Package>
+
+        <Package name="es.esi.cr.iso.gestionmesas.persistency">
+            <Stats>
+                <TotalClasses>4</TotalClasses>
+                <ConcreteClasses>4</ConcreteClasses>
+                <AbstractClasses>0</AbstractClasses>
+                <Ca>1</Ca>
+                <Ce>11</Ce>
+                <A>0</A>
+                <I>0.92</I>
+                <D>0.08</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+                <Class sourceFile="AbstractDao.java">
+                    es.esi.cr.iso.gestionmesas.persistency.AbstractDao
+                </Class>
+                <Class sourceFile="PersistenceContext.java">
+                    es.esi.cr.iso.gestionmesas.persistency.PersistenceContext
+                </Class>
+                <Class sourceFile="ReservaDao.java">
+                    es.esi.cr.iso.gestionmesas.persistency.ReservaDao
+                </Class>
+                <Class sourceFile="ServicioDao.java">
+                    es.esi.cr.iso.gestionmesas.persistency.ServicioDao
+                </Class>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>com.zaxxer.hikari</Package>
+                <Package>es.esi.cr.iso.gestionmesas.model</Package>
+                <Package>java.io</Package>
+                <Package>java.lang</Package>
+                <Package>java.sql</Package>
+                <Package>java.util</Package>
+                <Package>javax.persistence</Package>
+                <Package>javax.sql</Package>
+                <Package>org.springframework.core.env</Package>
+                <Package>org.springframework.orm.jpa</Package>
+                <Package>org.springframework.orm.jpa.vendor</Package>
+            </DependsUpon>
+
+            <UsedBy>
+                <Package>es.esi.cr.iso.gestionmesas.controller</Package>
+            </UsedBy>
+        </Package>
+
+        <Package name="java.io">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="java.lang">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="java.sql">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="java.util">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="java.util.stream">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="javax.persistence">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="javax.servlet">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="javax.sql">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.primefaces.context">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.slf4j">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.springframework.boot">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.springframework.boot.builder">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.springframework.boot.web.servlet">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.springframework.boot.web.support">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.springframework.core.env">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.springframework.orm.jpa">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.springframework.orm.jpa.vendor">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.springframework.util">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.springframework.web.servlet.config.annotation">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+    </Packages>
+
+    <Cycles>
+    </Cycles>
+</JDepend>

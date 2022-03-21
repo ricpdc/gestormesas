@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractDao.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Gestion Mesas</a> &gt; <a href="index.source.html" class="el_package">es.esi.cr.iso.gestionmesas.persistency</a> &gt; <span class="el_source">AbstractDao.java</span></div><h1>AbstractDao.java</h1><pre class="source lang-java linenums">package es.esi.cr.iso.gestionmesas.persistency;
+
+import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import es.esi.cr.iso.gestionmesas.model.AbstractEntity;
+
+
+@Service
+@Transactional
+<span class="nc" id="L19">public class AbstractDao&lt;T extends AbstractEntity&gt; implements Serializable {</span>
+
+	private static final long serialVersionUID = 1812196413677495102L;
+
+	private Class&lt;T&gt; clazz;
+
+	@PersistenceContext
+	protected EntityManager entityManager;
+
+	public final void setClazz(Class&lt;T&gt; clazzToSet) {
+<span class="nc" id="L29">		this.clazz = clazzToSet;</span>
+<span class="nc" id="L30">	}</span>
+
+	public T findById(Long id) {
+<span class="nc" id="L33">		return entityManager.find(clazz, id);</span>
+	}
+
+	@SuppressWarnings(&quot;unchecked&quot;)
+	public List&lt;T&gt; findAll() {
+<span class="nc" id="L38">		return entityManager.createQuery(&quot;from &quot; + clazz.getName()).getResultList();</span>
+	}
+
+	public void persist(T entity) {
+<span class="nc" id="L42">		Timestamp now = new Timestamp(new Date().getTime());</span>
+<span class="nc" id="L43">		entity.setFecha(now);</span>
+<span class="nc" id="L44">		entityManager.persist(entity);</span>
+<span class="nc" id="L45">	}</span>
+
+	public T update(T entity) {
+<span class="nc" id="L48">		Timestamp now = new Timestamp(new Date().getTime());</span>
+<span class="nc" id="L49">		entity.setFecha(now);</span>
+<span class="nc" id="L50">		return entityManager.merge(entity);</span>
+	}
+	
+	public void refresh(T entity) {
+<span class="nc" id="L54">		entityManager.refresh(entity);</span>
+<span class="nc" id="L55">	}</span>
+
+	public T persistOrUpdate(T entity) {
+<span class="nc bnc" id="L58" title="All 2 branches missed.">		if (entity.getId() == null) {</span>
+<span class="nc" id="L59">			persist(entity);</span>
+<span class="nc" id="L60">			return null;</span>
+		} else {
+<span class="nc" id="L62">			return update(entity);</span>
+		}
+	}
+
+	public void remove(T entity) {
+<span class="nc bnc" id="L67" title="All 2 branches missed.">		entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));</span>
+<span class="nc" id="L68">	}</span>
+
+	public void removeById(Long entityId) {
+<span class="nc" id="L71">		T entity = findById(entityId);</span>
+<span class="nc" id="L72">		remove(entity);</span>
+<span class="nc" id="L73">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
