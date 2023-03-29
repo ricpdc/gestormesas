@@ -43,6 +43,8 @@ public class GestorMesas implements Serializable {
 	private int turnoServicio;
 
 	private int[] ultimoEstadoMesa;
+	
+	private String test;
 
 	public GestorMesas() {
 		super();
